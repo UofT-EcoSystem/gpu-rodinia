@@ -9,11 +9,11 @@ clean :
 	rm -rf *.o nn hurricane_gen
 
 nn : nn_cuda.cu
-	$(CC) -cuda nn_cuda.cu
-	$(CC) -o nn nn_cuda.cu
+	$(CC) -cuda nn_cuda.cu -lcudart --cudart=shared
+	$(CC) -o nn nn_cuda.cu -lcudart --cudart=shared
 
 clang: $(SRC)
-	clang++ nn_cuda.cu -o nn -I../util --cuda-gpu-arch=sm_20 \
+	clang++ nn_cuda.cu -o nn -I../util --cuda-gpu  \
 		-L/usr/local/cuda/lib64 -lcudart_static -ldl -lrt -pthread -DTIMING
 
 hurricane_gen : hurricane_gen.c

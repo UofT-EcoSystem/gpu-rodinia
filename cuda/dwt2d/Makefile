@@ -9,7 +9,7 @@ cudagdb=0 #compile for use with cuda-gdb, note that 'dbg' must be 1 as well
 performancetest=1
 
 # NVCC Options
-NVCCFLAGS += -arch sm_20
+NVCCFLAGS +=  
 
 # Files
 CFILES := 
@@ -24,8 +24,8 @@ include ../../common/make.config
 
 # Common flags
 COMMONFLAGS += $(INCLUDES) 
-NVCCFLAGS += $(COMMONFLAGS)
-CXXFLAGS += $(COMMONFLAGS)
+NVCCFLAGS += $(COMMONFLAGS) -lcudart --cudart=shared
+CXXFLAGS += $(COMMONFLAGS) -lcudart
 CFLAGS += $(COMMONFLAGS) -std=c99 
 LDFLAGS += -L$(CUDA_INSTALL_PATH)/lib64 -lcudart
 
